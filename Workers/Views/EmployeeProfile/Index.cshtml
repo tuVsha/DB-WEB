@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Workers.Web.Models.EmployeeProfile>
+
+    @{ ViewData["Title"] = "Index"; }
+
+    <h2>Таблица</h2>
+
+    <p>
+        <a asp-action="Add">Добавить</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    ФИО
+                </th>
+                <th>
+                    Должность
+                </th>
+                <th>
+                    Подразделение
+                </th>
+                <th>
+                    Оклад
+                </th>
+                <th>
+                    Почта
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Profile.name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Employee.post)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Employee.devision)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Employee.salary)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Profile.email)
+    </td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.id">Изменить</a>
+        <form asp-action="Delete"
+              onclick="return confirm('Вы уверены?');">
+            <input type="hidden" value="@item.id" name="id" />
+            <input type="submit" value="Удалить" />
+        </form>
+    </td>
+</tr>}
+        </tbody>
+    </table>
+
+<div class="row">
+    <div class="col-md-4">
+        Название отдела
+        <form asp-action="IndexDivisionFilter" asp-route-model="@Model">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label"></label>
+                <input name="division" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Найти" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>

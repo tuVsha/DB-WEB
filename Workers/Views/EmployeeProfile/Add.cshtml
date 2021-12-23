@@ -1,0 +1,63 @@
+﻿@model Workers.Web.Models.EmployeeProfile
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h2>Добавить</h2>
+
+<h4>Работник</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Employee.post" class="control-label"></label>
+                <input asp-for="Employee.post" class="form-control" />
+                <span asp-validation-for="Employee.post" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.devision" class="control-label"></label>
+                <input asp-for="Employee.devision" class="form-control" />
+                <span asp-validation-for="Employee.devision" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee.salary" class="control-label"></label>
+                <input asp-for="Employee.salary" class="form-control" />
+                <span asp-validation-for="Employee.salary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.name" class="control-label"></label>
+                <input asp-for="Profile.name" class="form-control" />
+                <span asp-validation-for="Profile.name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.email" class="control-label"></label>
+                <input asp-for="Profile.email" class="form-control" />
+                <span asp-validation-for="Profile.email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.phone" class="control-label"></label>
+                <input asp-for="Profile.phone" class="form-control" />
+                <span asp-validation-for="Profile.phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.birthday" class="control-label"></label>
+                <input asp-for="Profile.birthday" class="form-control" />
+                <span asp-validation-for="Profile.birthday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Создать" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Обратно к списку</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Workers.Web.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Таблица</h2>
+
+<p>
+    <a asp-action="Add">Добавить</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Должность
+            </th>
+            <th>
+                Подразделение
+            </th>
+            <th>
+                Оклад
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.post)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.devision)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.salary)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Изменить</a>
+                <form asp-action="Delete"
+                      onclick = "return confirm('Вы уверены?');">
+                    <input type="hidden" value="@item.id" name="id" />
+                    <input type="submit" value="Удалить" />
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
